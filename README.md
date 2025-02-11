@@ -1,4 +1,6 @@
-### Reportify
+# Reportify
+
+### Setup .env
 
 ```
 MONGO_PASS=0TGpmCXGFVb1S9DJ
