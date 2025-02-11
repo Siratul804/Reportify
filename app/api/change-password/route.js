@@ -54,7 +54,8 @@ export async function PUT(req) {
     // Database operations
     await connectToDB();
 
-    const user = await User.findById(decoded.userId).select("+password");
+    const user = await User.findById(decoded.id).select("+password");
+    console.log(user);
     if (!user) {
       return NextResponse.json(
         { status: "error", message: "User not found" },
