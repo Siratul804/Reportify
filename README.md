@@ -42,7 +42,7 @@ REFRESH_TOKEN_SECRET=hackathon
 
 ```bash
 {
- 
+
   "email": "23201128@uap-bd.edu",
   "password": "23201128"
 
@@ -53,7 +53,7 @@ REFRESH_TOKEN_SECRET=hackathon
 
 ```json
 {
-   "message": "Logged in successfully!",
+  "message": "Logged in successfully!",
   "user_id": "67aad11c707c852704e01996",
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiZW1haWwiOiIyMzIwMTEyOEB1YXAtYmQuZWR1IiwiaWF0IjoxNzM5MjUzNTY4LCJleHAiOjE3Mzk4NTgzNjh9.3FtDHa-T9pzQmzti_6CzScQylowyzdaBOmX0PgCP4rM",
   "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiaWF0IjoxNzM5MjUzNTY4LCJleHAiOjE3NDE4NDU1Njh9.0V1HDBqAtAd1b3ZXVPFNU0Y2B_gdGRMPkZST58jpydA",
@@ -69,7 +69,7 @@ REFRESH_TOKEN_SECRET=hackathon
 
 ```bash
 {
- 
+
   "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiaWF0IjoxNzM5MjUzNTY4LCJleHAiOjE3NDE4NDU1Njh9.0V1HDBqAtAd1b3ZXVPFNU0Y2B_gdGRMPkZST58jpydA"
 
 }
@@ -82,5 +82,26 @@ REFRESH_TOKEN_SECRET=hackathon
   "message": "New access token generated successfully!",
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiaWF0IjoxNzM5MjU1NDI5LCJleHAiOjE3Mzk4NjAyMjl9.j8v_97IFe4ar2tzsKMzYuLD960UNlg-plpYiIpwPV4Y",
   "status": "success"
+}
+```
+
+### Forgot Password
+
+- **Route**: `http://localhost:3000/api/forgot-password`
+- **Method**: POST
+- **Body** :
+
+```bash
+{
+    "email_or_phone": "23201128@uap-bd.edu"
+}
+```
+
+- **Sample Response**:
+
+```json
+{
+  "status": "success",
+  "message": "Password reset link sent to your email."
 }
 ```

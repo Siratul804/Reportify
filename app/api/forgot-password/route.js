@@ -1,33 +1,17 @@
 import { NextResponse } from "next/server";
 import { connectToDB } from "../../db/connection";
 import { User } from "../../db/models/User";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
-export async function PUT(req) {
+export async function POST(req) {
   try {
-    // Extract authorization header
-    const authHeader = req.headers.get("authorization");
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
-    }
-
-    // Extract token
-    const token = authHeader.split(" ")[1];
-    let decoded;
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (err) {
-      return NextResponse.json({ error: "Invalid token." }, { status: 403 });
-    }
-
-    // Parse request body
     const body = await req.json();
-    const { current_password, new_password } = body;
+    const { email_or_phone } = body;
 
-    if (!current_password || !new_password) {
+    if (!email_or_phone) {
       return NextResponse.json(
-        { error: "Both current and new passwords are required." },
+        { status: "error", message: "Email or phone number is required." },
         { status: 400 }
       );
     }
@@ -35,36 +19,68 @@ export async function PUT(req) {
     // Connect to the database
     await connectToDB();
 
-    // Find user by ID
-    const user = await User.findById(decoded.userId);
-    if (!user) {
-      return NextResponse.json({ error: "User not found." }, { status: 404 });
-    }
+    // Find user by email or phone
+    const user = await User.findOne({
+      $or: [{ email: email_or_phone }, { phone: email_or_phone }],
+    });
 
-    // Compare current password
-    const isMatch = await bcrypt.compare(current_password, user.password);
-    if (!isMatch) {
+    if (!user) {
       return NextResponse.json(
-        { error: "Current password is incorrect." },
-        { status: 401 }
+        { status: "error", message: "User not found." },
+        { status: 404 }
       );
     }
 
-    // Hash new password
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(new_password, salt);
+    // Ensure JWT secret exists
+    if (!process.env.JWT_SECRET) {
+      throw new Error("Missing JWT_SECRET in environment variables.");
+    }
 
-    // Save updated user
+    // Generate JWT reset token (expires in 1 hour)
+    const resetToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour expiration
     await user.save();
 
+    // Ensure email environment variables exist
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      throw new Error("Missing email credentials in environment variables.");
+    }
+
+    // Send email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const resetURL = `http://localhost:3000/reset-password?token=${resetToken}`;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: "Password Reset Request",
+      text: `You requested a password reset. Click the link to reset your password: ${resetURL}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
     return NextResponse.json(
-      { status: "success", message: "Password updated successfully." },
+      {
+        status: "success",
+        message: "Password reset link sent to your email.",
+      },
       { status: 200 }
     );
   } catch (err) {
-    console.error("Error updating password:", err);
+    console.error("Error handling password recovery:", err);
     return NextResponse.json(
-      { error: "An error occurred. Please try again." },
+      { status: "error", message: "An error occurred. Please try again." },
       { status: 500 }
     );
   }
