@@ -181,3 +181,25 @@ Authorization: Bearer <admin_access_token>
   "message": "OTP sent successfully."
 }
 ```
+
+### Verify User
+
+- **Route**: `http://localhost:3000/api/verify-otp`
+- **Method**: POST
+- **Body** :
+
+```bash
+{
+    "otp":"793084",
+    "email_or_phone": "23201128@uap-bd.edu"
+}
+```
+
+- **Sample Response**:
+
+```json
+{
+  "status": "success",
+  "message": "OTP verified successfully! User verified."
+}
+```
