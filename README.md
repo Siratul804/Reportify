@@ -60,3 +60,27 @@ REFRESH_TOKEN_SECRET=hackathon
   "status": "success"
 }
 ```
+
+### Generate New Access Token
+
+- **Route**: `http://localhost:3000/api/refresh-token`
+- **Method**: POST
+- **Body** :
+
+```bash
+{
+ 
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiaWF0IjoxNzM5MjUzNTY4LCJleHAiOjE3NDE4NDU1Njh9.0V1HDBqAtAd1b3ZXVPFNU0Y2B_gdGRMPkZST58jpydA"
+
+}
+```
+
+- **Sample Response**:
+
+```json
+{
+  "message": "New access token generated successfully!",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiaWF0IjoxNzM5MjU1NDI5LCJleHAiOjE3Mzk4NjAyMjl9.j8v_97IFe4ar2tzsKMzYuLD960UNlg-plpYiIpwPV4Y",
+  "status": "success"
+}
+```
