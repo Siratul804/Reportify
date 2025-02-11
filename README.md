@@ -137,12 +137,11 @@ EMAIL_PASS=
 
 - **Route**: `http://localhost:3000/api/admin/ban-user`
 - **Method**: POST
-- **Body** :
-
 - **Headers**:
 ```bash
 Authorization: Bearer <admin_access_token>
 ```
+- **Body** :
 
 ```bash
   {
