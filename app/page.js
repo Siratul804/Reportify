@@ -1,3 +1,8 @@
+import ImageUploader from "./ui/AiTest";
 export default function page() {
-  return <>page</>;
+  return (
+    <>
+      <ImageUploader />
+    </>
+  );
 }
