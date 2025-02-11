@@ -105,3 +105,26 @@ REFRESH_TOKEN_SECRET=hackathon
   "message": "Password reset link sent to your email."
 }
 ```
+
+### Change Password
+
+- **Route**: `http://localhost:3000/api/change-password`
+- **Method**: POST
+- **Body** :
+
+```bash
+{
+  "current_password": "23201128",
+  "new_password": "23201106"
+}
+
+```
+
+- **Sample Response**:
+
+```json
+{
+  "status": "success",
+  "message": "Password updated successfully"
+}
+```
