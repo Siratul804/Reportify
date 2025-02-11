@@ -7,6 +7,8 @@ import jwt from "jsonwebtoken";
 const ACCESS_KEY = process.env.ACCESS_TOKEN_SECRET;
 
 export async function GET(req, { params }) {
+  
+
   try {
     const authHeader = req.headers.get("authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
