@@ -32,9 +32,9 @@ EMAIL_PASS=
 
 ```json
 {
-    "message": "User registered successfully.",
-    "user_id": "67aaf172ac934afba76f9b59",
-    "status": "success"
+  "message": "User registered successfully.",
+  "user_id": "67aaf172ac934afba76f9b59",
+  "status": "success"
 }
 ```
 
@@ -46,9 +46,8 @@ EMAIL_PASS=
 
 ```bash
 {
-
-  "email": "23201128@uap-bd.edu",
-  "password": "23201128"
+  "email": "23201106@uap-bd.edu",
+  "password": "23201106"
 
 }
 ```
@@ -58,9 +57,10 @@ EMAIL_PASS=
 ```json
 {
   "message": "Logged in successfully!",
-  "user_id": "67aad11c707c852704e01996",
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiZW1haWwiOiIyMzIwMTEyOEB1YXAtYmQuZWR1IiwiaWF0IjoxNzM5MjUzNTY4LCJleHAiOjE3Mzk4NTgzNjh9.3FtDHa-T9pzQmzti_6CzScQylowyzdaBOmX0PgCP4rM",
-  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYWQxMWM3MDdjODUyNzA0ZTAxOTk2IiwiaWF0IjoxNzM5MjUzNTY4LCJleHAiOjE3NDE4NDU1Njh9.0V1HDBqAtAd1b3ZXVPFNU0Y2B_gdGRMPkZST58jpydA",
+  "user_id": "67ab1293607a99dd433aeffc",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYjEyOTM2MDdhOTlkZDQzM2FlZmZjIiwiZW1haWwiOiIyMzIwMTEwNkB1YXAtYmQuZWR1IiwiaWF0IjoxNzM5MjY0Njc0LCJleHAiOjE3Mzk4Njk0NzR9.dB6M-XcudkA9d0HWa0ZL4U_oJTe03IQMfM_8htPShd0",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjdhYjEyOTM2MDdhOTlkZDQzM2FlZmZjIiwiaWF0IjoxNzM5MjY0Njc0LCJleHAiOjE3NDE4NTY2NzR9.fmpT__OxoPSq1YXir45IUzY83W-tag8ZbLZ4ReYOD1Y",
+  "expiredAt": "2025-02-18T09:04:34.374Z",
   "status": "success"
 }
 ```
