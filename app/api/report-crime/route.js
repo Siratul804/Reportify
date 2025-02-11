@@ -2,6 +2,13 @@ import { connectToDB } from "../../db/connection";
 import { Crime } from "@/app/db/models/Crime";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const ACCESS_KEY = process.env.ACCESS_TOKEN_SECRET;
 
@@ -28,15 +35,8 @@ export async function POST(req) {
     }
 
     const body = await req.json();
-    const {
-      title,
-      description,
-      division,
-      district,
-      crime_time,
-      images,
-      video,
-    } = body;
+    const { title, description, division, district, crime_time, image, video } =
+      body;
 
     // Validate the request body
     if (!title || !description || !division || !district || !crime_time) {
@@ -44,6 +44,37 @@ export async function POST(req) {
         { error: "Missing required fields." },
         { status: 400 }
       );
+    }
+
+    // Handle image upload if provided
+    let imageUrl = "";
+    if (image) {
+      try {
+        // If the image is a base64 string, ensure it is correctly formatted
+        const formattedImage = image.startsWith("data:image")
+          ? image
+          : `data:image/jpeg;base64,${image}`;
+
+        // Upload the image using Cloudinary
+        const uploadResponse = await cloudinary.uploader.upload(
+          formattedImage,
+          {
+            folder: "Reportify", // Save to a folder named 'Reportify'
+            resource_type: "auto", // Automatically detect image/video type (important for base64)
+            public_id: `crime_report_${Date.now()}`, // Use a custom public ID
+          }
+        );
+
+        imageUrl = uploadResponse.secure_url; // Get the secure URL of the uploaded image
+
+        console.log(imageUrl);
+      } catch (uploadError) {
+        console.error("Error uploading image to Cloudinary:", uploadError);
+        return NextResponse.json(
+          { error: "Image upload failed." },
+          { status: 500 }
+        );
+      }
     }
 
     await connectToDB();
@@ -56,8 +87,8 @@ export async function POST(req) {
       division,
       district,
       crime_time,
-      images,
-      video,
+      image: imageUrl,
+      video, // You can handle video here if required (validate or upload)
     });
 
     // Save the crime report to the database
@@ -66,6 +97,7 @@ export async function POST(req) {
     return NextResponse.json(
       {
         crime_id: savedReport._id,
+        // savedReport,
         status: "success",
         message: "Crime report submitted successfully!",
       },

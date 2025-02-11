@@ -19,6 +19,12 @@ EMAIL_PASS=
 # AI Models
 GROQ_API_KEY=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
 HF_API_KEY=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
+
+# Cloudinary
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=siratul
+CLOUDINARY_API_KEY=973265198543579
+CLOUDINARY_API_SECRET=yt0DyMGXp092Z0dpJ6tQ4yG5Eqw
+CLOUDINARY_URL=cloudinary://973265198543579:yt0DyMGXp092Z0dpJ6tQ4yG5Eqw@siratul
 ```
 
 ## API Documentation
@@ -213,7 +219,7 @@ Authorization: Bearer <admin_access_token>
 }
 ```
 
-### Verify User
+### Ai Desc
 
 - **Route**: `http://localhost:3000/api/ai-des`
 - **Method**: POST
@@ -230,5 +236,53 @@ Authorization: Bearer <admin_access_token>
 ```json
 {
   "aiResponse": "In a shocking display of brazen thievery, a sly thief was caught on camera snatching a unsuspecting woman's purse, leaving her stunned and helpless on the sidewalk. The swift and silent strike occurred in broad daylight, raising concerns about the safety of pedestrians in the area. Witnesses describe the thief as a quick and agile individual who vanished into the crowd, purse in hand."
+}
+```
+
+### Report Crime
+
+- **Route**: `http://localhost:3000/api/report-crime`
+- **Method**: POST
+- **Body** :
+
+```bash
+
+{
+  "title": "Robbery at Market Street",
+  "description": "A robbery occurred at Market Street around 10 PM.",
+  "division": "North",
+  "district": "Downtown",
+  "crime_time": "2025-02-10T22:00:00Z",
+  "image": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUUFBgVFRUZGRgaGxoYGxsaGBoaGBoaGhgbGxobGxsbIS0kGyEqHxoaJTklKi4xNTQ0GiM6Pzo0Pi0zNDEBCwsLEA8QHxISHzMqIyszMzMz......",
+  "video": "https://example.com/video.mp4"
+}
+
+
+```
+
+- **Sample Response**:
+
+```json
+{
+  "crime_id": "67ab7f798cb221338b583e2a",
+  "savedReport": {
+    "title": "Robbery at Market Street",
+    "description": "A robbery occurred at Market Street around 10 PM.",
+    "division": "North",
+    "district": "Downtown",
+    "crime_time": "2025-02-10T22:00:00.000Z",
+    "image": "https://res.cloudinary.com/siratul/image/upload/v1739292535/Reportify/crime_report_1739292533841.jpg",
+    "video": "https://example.com/video.mp4",
+    "user_id": "67ab37c13e9603fb1c94134b",
+    "upvotes": 0,
+    "downvotes": 0,
+    "verification_score": 0,
+    "comments": [],
+    "_id": "67ab7f798cb221338b583e2a",
+    "post_time": "2025-02-11T16:48:57.097Z",
+    "__v": 0
+  },
+  "status": "success",
+  "message": "Crime report submitted successfully!"
 }
 ```

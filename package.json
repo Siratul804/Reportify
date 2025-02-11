@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
     "groq-sdk": "^0.15.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.13.0",
