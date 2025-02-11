@@ -6,7 +6,7 @@ const crimeSchema = new mongoose.Schema({
   division: { type: String, required: true },
   district: { type: String, required: true },
   crime_time: { type: Date, required: true },
-  images: [{ type: String }], // URLs of uploaded images
+  image: { type: String }, // URLs of uploaded images
   video: { type: String, default: null }, // URL of uploaded video
   post_time: { type: Date, default: Date.now },
   user_id: {

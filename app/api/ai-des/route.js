@@ -32,6 +32,8 @@ export async function POST(req) {
     const buffer = Buffer.from(arrayBuffer);
     const base64Image = buffer.toString("base64");
 
+    //binary data will come from front end from atik bhai
+
     // Call Hugging Face API
     const response = await fetch(
       "https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-base",
