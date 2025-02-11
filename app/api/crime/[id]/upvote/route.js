@@ -1,6 +1,6 @@
 import { connectToDB } from "@/app/db/connection";
 import { Crime } from "@/app/db/models/Crime";
-import { authenticate } from "@/middleware";
+import { authenticate } from "@/app/api/middleware/middleware";
 import { NextResponse } from "next/server";
 
 export async function PUT(req, { params }) {

@@ -1,11 +1,11 @@
+import { connectToDB } from "@/app/db/connection";
+import { User } from "@/app/db/models/User";
 import jwt from "jsonwebtoken";
-import { connectToDB } from "./app/db/connection";
-import { User } from "./app/db/models/User";
 
 
 export async function authenticate(req) {
   try {
-    await connectToDB();    
+    await connectToDB(); 
     const authHeader = req.headers.get("authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return { error: "Unauthorized", status: 401 };
