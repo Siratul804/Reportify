@@ -42,6 +42,10 @@ export async function POST(req) {
       );
     }
 
+    const access_expiry = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+    const refresh_expiry = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+    
+
     //generate access token
     const access_token = jwt.sign(
       {
@@ -57,16 +61,14 @@ export async function POST(req) {
       expiresIn: "30d",
     });
 
+    const access_expires_at = new Date(Date.now() + access_expiry);
+    const refresh_expires_at = new Date(Date.now() + refresh_expiry);
+
     // save refresh token in db
     await Token.findOneAndUpdate(
-      { user_id: user._id },
-      {
-        access_token,
-        refresh_token,
-        access_expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        refresh_expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-      },
-      { upsert: true, new: true }
+     { user_id: user._id },
+     { access_token, refresh_token, access_expires_at, refresh_expires_at },
+     { upsert: true, new: true }
     );
 
     return NextResponse.json(
@@ -75,6 +77,7 @@ export async function POST(req) {
         user_id: user._id,
         access_token,
         refresh_token,
+        expiredAt: access_expires_at,
         status: "success",
       },
       { status: 200 }
