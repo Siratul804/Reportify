@@ -10,8 +10,10 @@ export async function PUT(req, { params }) {
     if (auth.error) {
       return NextResponse.json({ error: auth.error }, { status: auth.status });
     }
-    const crimeId = params.id;
-    const crime = await Crime.findById(crimeId);
+    const { id } = await params;
+
+   
+    const crime = await Crime.findById(id);
     if (!crime) {
       return NextResponse.json(
         { error: "Crime post not found" },

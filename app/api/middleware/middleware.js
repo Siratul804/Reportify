@@ -2,8 +2,10 @@ import { connectToDB } from "@/app/db/connection";
 import { User } from "@/app/db/models/User";
 import jwt from "jsonwebtoken";
 
+const ACCESS_KEY = process.env.ACCESS_TOKEN_SECRET;
 
 export async function authenticate(req) {
+ 
   try {
     await connectToDB(); 
     const authHeader = req.headers.get("authorization");
@@ -11,9 +13,9 @@ export async function authenticate(req) {
       return { error: "Unauthorized", status: 401 };
     }
     const token = authHeader.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token,ACCESS_KEY);
 
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded.user_id);
     if (!user) {
       return { error: "User not found", status: 401 };
     }
