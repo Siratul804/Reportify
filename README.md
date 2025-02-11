@@ -132,3 +132,30 @@ EMAIL_PASS=
   "message": "Password updated successfully"
 }
 ```
+
+### Admin Ban User
+
+- **Route**: `http://localhost:3000/api/admin/ban-user`
+- **Method**: POST
+- **Body** :
+
+- **Headers**:
+```bash
+Authorization: Bearer <admin_access_token>
+```
+
+```bash
+  {
+  "user_id": "67aad11c707c852704e01996"
+}
+
+```
+
+- **Sample Response**:
+
+```json
+{
+  "status": "success",
+  "message": "User has been banned successfully."
+}
+```
