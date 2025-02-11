@@ -40,7 +40,7 @@ export async function POST(req) {
 
     const newUser = new User({
       email,
-      phone_number: phone,
+       phone,
       password: hashedPassword,
     });
 
