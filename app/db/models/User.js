@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   verified: { type: Boolean, default: false },
   banned: { type: Boolean, default: false },
   profile_image: { type: String, default: null },
+  isAdmin: { type: Boolean, default: true },
   bio: { type: String, default: null },
   crime_reports: [{ type: mongoose.Schema.Types.ObjectId, ref: "Crime" }],
 });
