@@ -60,10 +60,8 @@ export default function ImageUploader() {
       </form>
       {result && (
         <div className="mt-4 p-4 bg-white rounded-lg shadow-md w-full max-w-sm text-gray-700">
-          <h3 className="text-lg font-semibold">Analysis Result</h3>
-          <pre className="text-sm mt-2 p-2 bg-gray-100 rounded-lg overflow-x-auto">
-            {JSON.stringify(result, null, 2)}
-          </pre>
+          <h2 className="text-lg font-semibold">Analysis Result</h2>
+          {JSON.stringify(result, null, 2)}
         </div>
       )}
     </div>

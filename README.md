@@ -3,13 +3,22 @@
 ### Setup .env
 
 ```
+# mongodb database
 MONGO_PASS=0TGpmCXGFVb1S9DJ
 MONGO=mongodb+srv://23201128:0TGpmCXGFVb1S9DJ@reportify.qztzb.mongodb.net/?retryWrites=true&w=majority&appName=Reportify
+
+# tokens
 ACCESS_TOKEN_SECRET=reportify
 REFRESH_TOKEN_SECRET=hackathon
 JWT_SECRET=reportify123
+
+# email ifos
 EMAIL_USER=
 EMAIL_PASS=
+
+# AI Models
+GROQ_API_KEY=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
+HF_API_KEY=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
 ```
 
 ## API Documentation
@@ -201,5 +210,25 @@ Authorization: Bearer <admin_access_token>
 {
   "status": "success",
   "message": "OTP verified successfully! User verified."
+}
+```
+
+### Verify User
+
+- **Route**: `http://localhost:3000/api/ai-des`
+- **Method**: POST
+- **Body** :
+
+```bash
+
+/ui/AiTest.jsx
+
+```
+
+- **Sample Response**:
+
+```json
+{
+  "aiResponse": "In a shocking display of brazen thievery, a sly thief was caught on camera snatching a unsuspecting woman's purse, leaving her stunned and helpless on the sidewalk. The swift and silent strike occurred in broad daylight, raising concerns about the safety of pedestrians in the area. Witnesses describe the thief as a quick and agile individual who vanished into the crowd, purse in hand."
 }
 ```
