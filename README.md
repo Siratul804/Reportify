@@ -29,8 +29,9 @@ REFRESH_TOKEN_SECRET=hackathon
 
 ```json
 {
-  "message": "User registered.",
-  "user_id": "67aad11c707c852704e01996"
+    "message": "User registered successfully.",
+    "user_id": "67aaf172ac934afba76f9b59",
+    "status": "success"
 }
 ```
 
