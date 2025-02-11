@@ -7,6 +7,9 @@ MONGO_PASS=0TGpmCXGFVb1S9DJ
 MONGO=mongodb+srv://23201128:0TGpmCXGFVb1S9DJ@reportify.qztzb.mongodb.net/?retryWrites=true&w=majority&appName=Reportify
 ACCESS_TOKEN_SECRET=reportify
 REFRESH_TOKEN_SECRET=hackathon
+JWT_SECRET=reportify123
+EMAIL_USER=
+EMAIL_PASS=
 ```
 
 ## API Documentation
