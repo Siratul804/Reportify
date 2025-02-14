@@ -1,31 +1,14 @@
-# Reportify
+# Reportify - Crime Reporting Platform with Fake Detection (Backend)
 
-### Setup .env
+> Created by Team The Mavericks for NSU WebXtreme Hackathon
 
-```
-# mongodb database
-MONGO_PASS=0TGpmCXGFVb1S9DJ
-MONGO=mongodb+srv://23201128:0TGpmCXGFVb1S9DJ@reportify.qztzb.mongodb.net/?retryWrites=true&w=majority&appName=Reportify
+## 🚀 Features
 
-# tokens
-ACCESS_TOKEN_SECRET=reportify
-REFRESH_TOKEN_SECRET=hackathon
-JWT_SECRET=reportify123
+*   **Crime Report Submission:** Users can post images of crimes, and the platform will generate a description using AI.
+*   **Fake Report Detection:** AI algorithms predict the likelihood of a report being fake.
+*   **Secure Authentication:**  Authentication is implemented using refresh and access tokens.
+*   **Community Moderation:** Users can comment on images to dispute potentially false reports.
 
-# email ifos
-EMAIL_USER=
-EMAIL_PASS=
-
-# AI Models
-GROQ_API_KEY=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
-HF_API_KEY=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
-
-# Cloudinary
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=siratul
-CLOUDINARY_API_KEY=973265198543579
-CLOUDINARY_API_SECRET=yt0DyMGXp092Z0dpJ6tQ4yG5Eqw
-CLOUDINARY_URL=cloudinary://973265198543579:yt0DyMGXp092Z0dpJ6tQ4yG5Eqw@siratul
-```
 
 ## API Documentation
 
@@ -286,3 +269,82 @@ Authorization: Bearer <admin_access_token>
   "message": "Crime report submitted successfully!"
 }
 ```
+
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15.1.6
+- **Database**: MongoDB with Mongoose
+- **AI Models** : Grok, Huggingface
+- **Media Management** : Cloudinary
+
+## 🚦 Getting Started
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/Siratul804/Reportify.git
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Set up environment variables**
+Create a `.env.local` file with the following variables:
+
+```env
+
+# mongodb database
+MONGO_PASS=
+MONGO=
+
+# tokens
+ACCESS_TOKEN_SECRET=reportify
+REFRESH_TOKEN_SECRET=hackathon
+JWT_SECRET=reportify123
+
+# email ifos
+EMAIL_USER=
+EMAIL_PASS=
+
+# AI Models
+GROQ_API_KEY=
+HF_API_KEY=
+
+# Cloudinary
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=siratul
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+CLOUDINARY_URL=
+
+
+
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+
+```
+
+4. **Run the development server**
+```bash
+npm run dev
+```
+
+5. **Build for production**
+```bash
+npm run build
+```
+
+## 📝 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+Created by Team The Mavericks for NSU WebXtreme Hackathon
+
